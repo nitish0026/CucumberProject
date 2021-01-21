@@ -1,0 +1,90 @@
+plugins {
+    id 'java'
+}
+
+group 'com.cloudblue.odin'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+configurations {
+    cucumberRuntime.extendsFrom testRuntime
+}
+
+repositories {
+    mavenCentral()
+}
+
+task setURL doLast {
+    println myUrl
+    Properties props = new Properties()
+    File propsFile = new File('src/test/resources/config.properties')
+    props.load(propsFile.newDataInputStream())
+    props.setProperty('ApplicationUrl', myUrl)
+    props.store(propsFile.newWriter(), null)
+}
+
+task setEnvironment doLast {
+    println myEnvironment
+    Properties props = new Properties()
+    File propsFile = new File('src/test/resources/config.properties')
+    props.load(propsFile.newDataInputStream())
+    props.setProperty('environment', myEnvironment)
+    props.store(propsFile.newWriter(), null)
+}
+
+task setConnectURL doLast {
+    println myConnectURL
+    Properties props = new Properties()
+    File propsFile = new File('src/test/resources/config.properties')
+    props.load(propsFile.newDataInputStream())
+    props.setProperty('connectURL', myConnectURL)
+    props.store(propsFile.newWriter(), null)
+}
+
+dependencies {
+//    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+//    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.47.1'
+
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-alpha-6'
+
+// https://mvnrepository.com/artifact/junit/junit
+    compile group: 'junit', name: 'junit', version: '4.13'
+
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-java
+    compile group: 'io.cucumber', name: 'cucumber-java', version: '4.7.2'
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+    compile group: 'io.cucumber', name: 'cucumber-junit', version: '4.7.2'
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-core
+    compile group: 'io.cucumber', name: 'cucumber-core', version: '4.7.2'
+    // https://mvnrepository.com/artifact/io.cucumber/gherkin
+    compile group: 'io.cucumber', name: 'gherkin', version: '5.1.0'
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm
+    compile group: 'io.cucumber', name: 'cucumber-jvm', version: '4.7.2'
+//    // https://mvnrepository.com/artifact/io.cucumber/cucumber-testng
+    compile group: 'io.cucumber', name: 'cucumber-testng', version: '4.7.2'
+// https://mvnrepository.com/artifact/io.cucumber/datatable
+//    compile group: 'io.cucumber', name: 'datatable', version: '3.3.1'
+// https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer
+    compile group: 'io.cucumber', name: 'cucumber-picocontainer', version: '4.7.2'
+    // https://mvnrepository.com/artifact/io.cucumber/datatable-matchers
+//    compile group: 'io.cucumber', name: 'datatable-matchers', version: '3.3.1'
+
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testCompile group: 'org.testng', name: 'testng', version: '6.13'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    // https://mvnrepository.com/artifact/com.vimalselvam/cucumber-extentsreport
+//    compile group: 'com.vimalselvam', name: 'cucumber-extentsreport', version: '3.0.1'
+    // https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber4-adapter
+    compile group: 'com.aventstack', name: 'extentreports-cucumber4-adapter', version: '1.0.12'
+    // https://mvnrepository.com/artifact/com.aventstack/extentreports
+    compile group: 'com.aventstack', name: 'extentreports', version: '4.1.6'
+// https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting
+//    compile group: 'net.masterthought', name: 'maven-cucumber-reporting', version: '5.0.0'
+// https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+testCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+}
+
